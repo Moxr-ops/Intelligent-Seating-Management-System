@@ -38,7 +38,6 @@ class SeatAssignment:
             elif rel["type"] == "prefer":
                 self.prefer_pairs.add(sorted_ids)
 
-        # 参数验证
         if len(self.seat_pool) < len(students):
             raise ValueError(f"座位不足（需要 {len(students)} 个，现有 {len(self.seat_pool)} 个）")
         if any(not isinstance(s, tuple) for s in self.seat_pool):
