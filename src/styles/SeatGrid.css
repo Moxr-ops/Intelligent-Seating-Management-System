@@ -1,0 +1,167 @@
+/* SeatGrid.css 更新 */
+.system-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* 第一阶段样式 - 保持不变 */
+.seat-container {
+  border: 2px solid #eee;
+  padding: 10px;
+  margin: 20px 0;
+}
+
+.seat-row {
+  display: flex;
+}
+
+.seat-cell {
+  width: 70px;
+  height: 70px;
+  border: 1px solid #131313;
+  margin: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: rgb(216, 216, 216);
+  border-radius: 10%;
+}
+
+.seat-cell.selected {
+  background: #90EE90;
+  border-color: #4CAF50;
+}
+
+/* 第二阶段新样式 */
+.student-container {
+  position: relative;
+  width: 800px;
+  height: 800px; /* 固定容器尺寸 */
+  margin-top: 20px;
+}
+
+/* 放置区域样式 */
+.drop-zone {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border: 2px dashed #ccc;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.drop-zone.hovered {
+  border-color: #2196F3;
+  background: rgba(33, 150, 243, 0.1);
+}
+
+/* 学生卡片样式 */
+.student {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: #6495ED;
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: move;
+  transition: all 0.2s;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 1px; /* 与放置区域保持间距 */
+  transform: translate(2px, 2px); 
+}
+
+/* 拖拽状态 */
+.student.dragging {
+  opacity: 0.5;
+  transform: scale(0.9) translate(2px, 2px);
+  z-index: 999; /* 确保在最上层 */
+}
+
+/* 悬停交互效果 */
+.student:hover {
+  background: #477ee4;
+  border: 2px solid rgb(55, 136, 206);
+}
+
+/* 按钮样式 */
+button {
+  padding: 10px 20px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.placement-stage {
+  position: relative;
+  min-height: 600px;
+  padding-top: 20px;
+}
+
+.controls {
+  margin: 20px 0;
+  display: flex;
+  gap: 10px;
+}
+
+button.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.mode-indicator {
+  padding: 10px;
+  background: #f0f0f0;
+  border-radius: 4px;
+}
+
+.relation-line {
+  position: absolute;
+  pointer-events: none;
+}
+
+.avoid-line {
+  stroke: red;
+  stroke-width: 2;
+}
+
+.prefer-line {
+  stroke: green;
+  stroke-width: 2;
+}
+
+.student-count {
+  margin: 10px 0;
+  padding: 8px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.seat-count {
+  margin: 10px 0;
+  padding: 8px;
+  background: #e6f7ff;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.warning-message {
+  color: #ff4d4f;
+  margin-top: 10px;
+  padding: 8px;
+  background: #fff2f0;
+  border-radius: 4px;
+  border: 1px solid #ffccc7;
+}

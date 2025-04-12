@@ -1,0 +1,57 @@
+.file-upload-section {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .upload-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .upload-group label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #2c3e50;
+  }
+  
+  .upload-group input[type="file"] {
+    display: none; /* 隐藏默认文件输入 */
+  }
+  
+  .upload-group .custom-file-input {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+  
+  .upload-group .custom-file-input:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+  }
+  
+  .upload-group .file-name {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #7f8c8d;
+  }
+  
+  /* 响应式设计 */
+  @media (max-width: 768px) {
+    .file-upload-section {
+      padding: 15px;
+    }
+    
+    .upload-group label {
+      font-size: 14px;
+    }
+  }

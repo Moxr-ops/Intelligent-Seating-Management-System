@@ -1,0 +1,45 @@
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --background: #f5f6fa;
+  --text-color: #333;
+  --border-radius: 12px;
+  --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.app-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px;
+  min-height: 100vh;
+  background: var(--background);
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.app-header h1 {
+  color: var(--primary-color);
+  margin: 0;
+  font-size: 2.2rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main-content {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 30px;
+  box-shadow: var(--box-shadow);
+  transition: var(--transition);
+}
