@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import FileUpload from './FileUpload';
@@ -54,7 +54,6 @@ const SeatSelector = ({ onSelectChange }) => {
     );
 };
 
-// 第二阶段：独立的可拖拽学生组件
 const DraggableStudent = ({ student, onSelect }) => {
     const [{ isDragging }, drag, preview] = useDrag(() => ({
         type: 'student',
@@ -84,7 +83,6 @@ const DraggableStudent = ({ student, onSelect }) => {
     );
 };
 
-// 第二阶段：独立的可放置区域组件
 const StudentDropZone = ({ position, currentStudent, onDrop, onSelect }) => {
     const [{ isOver, canDrop }, drop] = useDrop(() => ({
         accept: 'student',
@@ -156,19 +154,17 @@ const RelationLines = ({ relations, seatMap }) => {
     );
 };
 
-// 主组件
 export default function SeatSystem() {
     const [students, setStudents] = useState([]);
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [seatMap, setSeatMap] = useState(new Map());
     const [phase, setPhase] = useState(1);
     const [relations, setRelations] = useState([]);
-    const [currentMode, setCurrentMode] = useState(null); // 'avoid' | 'prefer'
+    const [currentMode, setCurrentMode] = useState(null); 
     const [selectedStudents, setSelectedStudents] = useState([]);
     const [generatedLayout, setGeneratedLayout] = useState(null);
     const [generationStatus, setGenerationStatus] = useState('');
 
-    // 初始化座位映射
     useEffect(() => {
         if (phase === 2 && students.length && selectedSeats.length) {
             const initialMap = new Map(
@@ -188,14 +184,12 @@ export default function SeatSystem() {
         }
     }, [phase, students, selectedSeats]);
 
-    // 处理放置逻辑
     const handleDrop = (draggedStudent, targetPosition) => {
         setSeatMap(prev => {
             console.log("prev 0-0 Stu: ", prev.get("0-0"))
             const newMap = new Map(prev);
             const targetPosKey = `${targetPosition.row}-${targetPosition.col}`;
 
-            // 查找被拖拽学生的当前位置
             let currentPosKey = null;
 
             for (const [pos, student] of newMap.entries()) {
@@ -210,13 +204,10 @@ export default function SeatSystem() {
                 return prev;
             }
 
-            // 获取目标位置学生
             const targetStudent = newMap.get(targetPosKey);
             console.log("targetStu: ", targetStudent);
 
-            // 执行交换
             if (targetStudent) {
-                // 移动目标学生到原位置
                 newMap.set(currentPosKey, {
                     ...targetStudent,
                     position: {
@@ -229,7 +220,6 @@ export default function SeatSystem() {
             }
             console.log("currentPosStu: ", newMap.get(currentPosKey));
 
-            // 放置拖拽学生到目标位置
             newMap.set(targetPosKey, {
                 ...draggedStudent,
                 position: targetPosition
@@ -286,7 +276,6 @@ export default function SeatSystem() {
             assignedStudents.add(student.id);
         });
 
-        // 检查是否有遗漏学生
         students.forEach(s => {
             if (!assignedStudents.has(s.id)) {
                 console.error(`学生未被分配：${s.name}`);
@@ -298,7 +287,6 @@ export default function SeatSystem() {
 
     const exportToPDF = async () => {
         try {
-            // Prepare data with proper encoding
             const pdfData = {
                 students: Array.from(seatMap.entries()).map(([pos, student]) => ({
                     ...student,
@@ -307,7 +295,6 @@ export default function SeatSystem() {
                 seats: selectedSeats
             };
     
-            // Make sure to stringify with proper encoding
             const response = await fetch('http://localhost:5000/export_pdf', {
                 method: 'POST',
                 headers: { 
@@ -322,7 +309,6 @@ export default function SeatSystem() {
                 throw new Error(error.error || 'PDF generation failed');
             }
     
-            // Handle PDF download
             const blob = await response.blob();
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');

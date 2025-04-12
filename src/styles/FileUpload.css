@@ -20,7 +20,7 @@
   }
   
   .upload-group input[type="file"] {
-    display: none; /* 隐藏默认文件输入 */
+    display: none;
   }
   
   .upload-group .custom-file-input {
@@ -45,7 +45,6 @@
     color: #7f8c8d;
   }
   
-  /* 响应式设计 */
   @media (max-width: 768px) {
     .file-upload-section {
       padding: 15px;
